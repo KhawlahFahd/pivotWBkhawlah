@@ -16,14 +16,13 @@
 #'
 #' @export
 mortality_fun <- function(data, varname) {
-
-  data |>
-    tidyr::pivot_longer(
-      cols = tidyselect::starts_with("X"),
-      names_to = "year",
-      names_prefix = "X",
-      values_to = varname
-    ) |>
-    dplyr::mutate(year = as.numeric(.data$year)) |>
-    dplyr::select(.data$iso, .data$year, tidyselect::all_of(varname))
+data |>
+pivot_longer(
+cols = starts_with("X"),
+names_to = "year",
+names_prefix = "X",
+values_to = varname
+) |>
+mutate(year = as.numeric(year)) |>
+select(iso, year, all_of(varname))
 }
