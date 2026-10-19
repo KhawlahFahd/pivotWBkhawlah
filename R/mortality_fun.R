@@ -24,6 +24,6 @@ mortality_fun <- function(data, varname) {
       names_prefix = "X",
       values_to = varname
     ) |>
-    dplyr::mutate(year = as.numeric(year)) |>
-    dplyr::select(iso, year, tidyselect::all_of(varname))
+    dplyr::mutate(year = as.numeric(.data$year)) |>
+    dplyr::select(.data$iso, .data$year, tidyselect::all_of(varname))
 }
